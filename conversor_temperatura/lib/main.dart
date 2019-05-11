@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
     // Icon icon = Icon(Icons.wb_sunny, size: 120, color: Colors.yellow);
     Image imgLogo = Image.asset('assets/images/logo.png', height: 120, width: 120);
 
-    TextStyle styleDecoration = TextStyle(color: Colors.blueAccent, fontSize: 20);
+    TextStyle styleDecoration = TextStyle(color: Colors.black, fontSize: 20);
     TextStyle styleField = TextStyle(color: Colors.red);
 
     TextFormField tempCelsius = TextFormField(
@@ -51,6 +51,8 @@ class _HomeState extends State<Home> {
       decoration: InputDecoration(
         labelText: "Temperatura em graus Celsius",
         labelStyle: styleDecoration,
+        border: OutlineInputBorder(),
+        suffixText: "°C"
       ),
       textAlign: TextAlign.center,
       style: styleField,
@@ -67,21 +69,24 @@ class _HomeState extends State<Home> {
       decoration: InputDecoration(
         labelText: "Temperatura em graus Fahrenheit",
         labelStyle: styleDecoration,
+        border: OutlineInputBorder(),
+        suffixText: "°F"
       ),
       textAlign: TextAlign.center,
       style: styleField,
       controller: fahrenheitController,
-      validator: (value) {
-        if(value.isEmpty) {
-          return "Informe um valor";
-        }
-      }
     );
 
     RaisedButton raisedButton = RaisedButton(
-      onPressed: () { if (_formKey.currentState.validate()) { _converter(); } },
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          _converter();
+        }
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
       child: Text("Calcular"),
-      color: Colors.blueAccent
+      color: Colors.blueAccent,
+      textColor: Colors.white
     );
 
     Container containerBtn = Container(
@@ -99,6 +104,7 @@ class _HomeState extends State<Home> {
       children: <Widget> [
         imgLogo,
         tempCelsius,
+        Divider(),
         tempFahrenheit,
         padding
       ],
