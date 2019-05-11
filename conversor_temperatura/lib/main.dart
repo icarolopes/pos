@@ -10,6 +10,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  TextEditingController celsiusController = TextEditingController();
+  TextEditingController fahrenheitController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     AppBar appBar = AppBar(
@@ -36,9 +39,9 @@ class _HomeState extends State<Home> {
         labelStyle: styleDecoration,
       ),
       textAlign: TextAlign.center,
-      style: styleField
+      style: styleField,
+      controller: celsiusController
     );
-
     TextField tempFahrenheit = TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -46,21 +49,44 @@ class _HomeState extends State<Home> {
         labelStyle: styleDecoration,
       ),
       textAlign: TextAlign.center,
-      style: styleField
+      style: styleField,
+      controller: fahrenheitController
     );
+
+    RaisedButton raisedButton = RaisedButton(
+      onPressed: () {},
+      child: Text("Calcular"),
+      color: Colors.blueAccent
+    );
+
+    Container containerBtn = Container(
+      height: 50.0,
+      child: raisedButton
+    );
+
+    Padding padding = Padding(
+      padding: EdgeInsets.only(top: 20.0),
+      child: containerBtn
+    );
+
     Column column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget> [
         icon,
         tempCelsius,
-        tempFahrenheit
+        tempFahrenheit,
+        padding
       ],
+    );
+
+    SingleChildScrollView singleChildScrollView = SingleChildScrollView(
+      child: column
     );
 
     Scaffold scaffold = Scaffold(
       appBar: appBar,
       backgroundColor: Colors.white,
-      body: column,
+      body: singleChildScrollView,
     );
 
     return scaffold;
