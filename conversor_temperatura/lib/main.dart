@@ -40,7 +40,8 @@ class _HomeState extends State<Home> {
       ],
     );
 
-    Icon icon = Icon(Icons.wb_sunny, size: 120, color: Colors.yellow);
+    // Icon icon = Icon(Icons.wb_sunny, size: 120, color: Colors.yellow);
+    Image imgLogo = Image.asset('assets/images/logo.png', height: 120, width: 120);
 
     TextStyle styleDecoration = TextStyle(color: Colors.blueAccent, fontSize: 20);
     TextStyle styleField = TextStyle(color: Colors.red);
@@ -96,7 +97,7 @@ class _HomeState extends State<Home> {
     Column column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget> [
-        icon,
+        imgLogo,
         tempCelsius,
         tempFahrenheit,
         padding
