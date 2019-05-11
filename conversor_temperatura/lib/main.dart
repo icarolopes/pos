@@ -13,6 +13,11 @@ class _HomeState extends State<Home> {
   TextEditingController celsiusController = TextEditingController();
   TextEditingController fahrenheitController = TextEditingController();
 
+  void _resetFields () {
+    celsiusController.text = '';
+    fahrenheitController.text = '';
+  }
+
   @override
   Widget build(BuildContext context) {
     AppBar appBar = AppBar(
@@ -22,7 +27,7 @@ class _HomeState extends State<Home> {
       actions: <Widget> [
         IconButton (
           icon: Icon(Icons.refresh),
-          onPressed: (){},
+          onPressed: _resetFields,
         ),
       ],
     );
